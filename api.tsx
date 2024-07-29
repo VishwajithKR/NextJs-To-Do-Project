@@ -15,7 +15,6 @@ export const getAllTodos = async (): Promise<ITask[]> => {
     throw error;
   }
 };
-
 // ========== Post Method ========== //
 export const addTodo = async (data: ITask): Promise<ITask> => {
   try {
