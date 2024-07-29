@@ -11,7 +11,7 @@ export const getAllTodos = async (): Promise<ITask[]> => {
     const res = await axios.get(`${BaseUrl}/todo_task`);
     return res.data;
   } catch (error) {
-    console.error("Error fetching todos:", error)
+    console.error("Error fetching todos:", error);
     throw error;
   }
 };
