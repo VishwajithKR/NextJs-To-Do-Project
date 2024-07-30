@@ -6,7 +6,7 @@ interface TodoList {
   tasks: ITask[];
 }
 
-const todoList: React.FC<TodoList> = ({ tasks }) => {
+const TodoList: React.FC<TodoList> = ({ tasks }) => {
   return (
     <div className="overflow-x-auto">
       <table className="table">
@@ -28,4 +28,4 @@ const todoList: React.FC<TodoList> = ({ tasks }) => {
   );
 };
 
-export default todoList;
+export default TodoList;
