@@ -7,11 +7,11 @@ import Model from "./model";
 import { useRouter } from "next/navigation";
 import { deleteTodo, editTodo } from "../../../api";
 
-interface Taskprops {
+interface TaskProps {
   task: ITask;
 }
 
-const tasks: React.FC<Taskprops> = ({ task }) => {
+const Tasks: React.FC<TaskProps> = ({ task }) => {
   const [openModalEdit, setOpenModalEdit] = useState<boolean>(false);
   const [openModalDelete, setOpenModalDelete] = useState<boolean>(false);
   const [taskToEdit, setTaskToEdit] = useState<string>(task.text);
@@ -29,7 +29,6 @@ const tasks: React.FC<Taskprops> = ({ task }) => {
           id: task.id,
           text: taskToEdit,
         });
-        // setTaskToEdit("");
         setOpenModalEdit(false);
         router.refresh();
       } catch (error) {
@@ -40,13 +39,18 @@ const tasks: React.FC<Taskprops> = ({ task }) => {
 
   // ========== Api Call and Delete method is Progress ========== //
   const handleDeleteTask = async (id_mock_api: string) => {
-    await deleteTodo(id_mock_api);
-    setOpenModalDelete(false);
-    router.refresh();
+    try {
+      await deleteTodo(id_mock_api);
+      setOpenModalDelete(false);
+      router.refresh();
+    } catch (error) {
+      console.error("Error deleting task:", error);
+    }
   };
+
   return (
     <tr key={task.id}>
-      <td className="w-full ">{task.text}</td>
+      <td className="w-full">{task.text}</td>
       <td className="flex gap-6">
         <FiEdit
           className="text-blue-500 cursor-pointer"
@@ -55,7 +59,7 @@ const tasks: React.FC<Taskprops> = ({ task }) => {
         />
         <Model modalOpen={openModalEdit} setModalOpen={setOpenModalEdit}>
           <form onSubmit={handleSubmitEditTask}>
-            <h3 className="font-bold text-lg">Add New Task</h3>
+            <h3 className="font-bold text-lg">Edit Task</h3>
             <div className="modal-action">
               <input
                 value={taskToEdit}
@@ -76,9 +80,7 @@ const tasks: React.FC<Taskprops> = ({ task }) => {
           onClick={() => setOpenModalDelete(true)}
         />
         <Model modalOpen={openModalDelete} setModalOpen={setOpenModalDelete}>
-          <h3 className="text-lg">
-            Are you sure , you want to delete this task?
-          </h3>
+          <h3 className="text-lg">Are you sure you want to delete this task?</h3>
           <div className="model-action text-center">
             <button onClick={() => handleDeleteTask(task.id)} className="btn">
               Yes
@@ -90,4 +92,4 @@ const tasks: React.FC<Taskprops> = ({ task }) => {
   );
 };
 
-export default tasks;
+export default Tasks;
