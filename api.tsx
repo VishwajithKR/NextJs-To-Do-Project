@@ -6,36 +6,37 @@ const BaseUrl = "https://66a7489853c13f22a3cf1a30.mockapi.io";
 
 
 // ========== Get Method =========== //
-// export const getAllTodos = async (): Promise<ITask[]> => {
-//   try {
-//     const res = await axios.get(`${BaseUrl}/todo_task`);
-//     return res.data;
-//   } catch (error) {
-//     console.error("Error fetching todos:", error);
-//     throw error;
-//   }
-// };
-
 export const getAllTodos = async (): Promise<ITask[]> => {
   try {
-    const res = await fetch(`${BaseUrl}/todo_task`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (!res.ok) {
-      throw new Error('Network response was not ok');
-    }
-
-    const data = await res.json();
-    return data;
+    const res = await axios.get(`${BaseUrl}/todo_task`);
+    return res.data;
+    console.log(res.data)
   } catch (error) {
     console.error("Error fetching todos:", error);
     throw error;
   }
 };
+// export const getAllTodos = async (): Promise<ITask[]> => {
+//   try {
+//     const response = await fetch(`${BaseUrl}/todo_task`, {
+//       method: 'GET',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//     });
+// // console.log(response)
+//     if (!response.ok) {
+//       throw new Error(`Network response was not ok: ${response.statusText}`);
+//     }
+
+//     const data = await response.json();
+//     return data;
+//     console.log(data,"Bopathi data")
+//   } catch (error) {
+//     console.error('Error fetching todos:', error);
+//     throw error;
+//   }
+// };
 
 // ========== Post Method ========== //
 export const addTodo = async (data: ITask): Promise<ITask> => {

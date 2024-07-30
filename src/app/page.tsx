@@ -5,6 +5,7 @@ export default async function Home() {
 
   // ========== Api Call and Get method is Progress ========== //
   const tasks = await getAllTodos();
+  console.log(tasks,"vishwa")
   
   return (
     // ========== Main Page (1) ========== //
