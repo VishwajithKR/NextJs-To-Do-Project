@@ -4,3 +4,5 @@ type = "javascript"
 
 [env.production]
 compatibility_flags = ["nodejs_compat"]
+
+compatibility_flags = [ "nodejs_compat" ]
