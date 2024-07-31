@@ -1,0 +1,6 @@
+# wrangler.toml
+name = "your-worker"
+type = "javascript"
+
+[env.production]
+compatibility_flags = ["nodejs_compat"]
