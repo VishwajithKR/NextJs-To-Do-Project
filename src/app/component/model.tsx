@@ -5,6 +5,7 @@ interface ModelProps {
   setModalOpen: (open: boolean) => void;
   children: React.ReactNode;
 }
+
 // ========== Pop-up Page ========== //
 const Model: React.FC<ModelProps> = ({ children, modalOpen, setModalOpen }) => {
   return (
