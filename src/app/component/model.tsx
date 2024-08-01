@@ -20,6 +20,6 @@ const Model: React.FC<ModelProps> = ({ children, modalOpen, setModalOpen }) => {
       </div>
     </div>
   );
-};
+}
 
 export default Model;
